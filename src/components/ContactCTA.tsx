@@ -1,49 +1,55 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { IMAGES } from '../data/site'
-import MagneticButton from './ui/MagneticButton'
-import Reveal from './ui/Reveal'
 
 export default function ContactCTA() {
-  const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], ['-12%', '12%'])
-
   return (
-    <section ref={ref} className="relative flex min-h-[70vh] items-center overflow-hidden">
-      <motion.div className="absolute inset-0" style={{ y, scale: 1.2 }}>
+    <section id="contact" className="relative w-full py-20 overflow-hidden">
+      {/* Background Image: Classroom Blackboard */}
+      <div className="absolute inset-0 z-0">
         <img
-          src={IMAGES.graduation}
-          alt="Graduates celebrating on campus"
-          className="h-full w-full object-cover"
+          src={IMAGES.chalkboardBanner}
+          alt="Classroom blackboard with equations"
+          className="w-full h-full object-cover object-center"
         />
-      </motion.div>
-      <div className="absolute inset-0 bg-midnight/70" />
-      <div className="grain absolute inset-0" />
+        {/* Dark overlay so text and coral button pop with high contrast */}
+        <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-[1px]" />
+      </div>
 
-      <div className="container-lux relative py-28 text-center">
-        <Reveal>
-          <p className="eyebrow mx-auto mb-8 justify-center !text-champagne-light before:hidden">
-            Your Future Starts Here
-          </p>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mx-auto max-w-4xl text-balance font-serif text-[11vw] font-light leading-[0.98] tracking-[-0.02em] text-ivory-light sm:text-6xl lg:text-[5vw]">
-            The next chapter of your story <span className="italic text-champagne">begins on our campus.</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.12}>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <MagneticButton href="#enquiry" className="btn-primary group hover:bg-champagne-light">
-              Talk to Admissions
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </MagneticButton>
-            <MagneticButton href="#enquiry" className="btn-ghost" strength={0.25}>
-              Send an Enquiry
-            </MagneticButton>
-          </div>
-        </Reveal>
+      <div className="container-page relative z-10 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="font-serif text-2xl sm:text-3xl md:text-4xl text-white tracking-tight"
+        >
+          Have questions or need assistance?
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-3 text-xs sm:text-sm text-slate-300 max-w-xl mx-auto font-light"
+        >
+          Together let’s embark on an exciting journey of education and exploration!
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8"
+        >
+          <a
+            href="#inquire"
+            className="btn-coral shadow-lg hover:shadow-red-500/30 font-bold"
+          >
+            CONTACT US
+          </a>
+        </motion.div>
       </div>
     </section>
   )

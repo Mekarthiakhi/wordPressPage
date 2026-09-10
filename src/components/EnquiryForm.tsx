@@ -1,203 +1,158 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Check, ArrowRight } from 'lucide-react'
-import Reveal from './ui/Reveal'
-import { EASE_LUX } from '../lib/motion'
-
-type FieldProps = {
-  id: string
-  label: string
-  type?: string
-  required?: boolean
-  as?: 'input' | 'textarea' | 'select'
-  options?: string[]
-  maxLength?: number
-  numeric?: boolean
-  inputMode?: 'text' | 'tel' | 'email' | 'numeric'
-}
-
-function Field({
-  id,
-  label,
-  type = 'text',
-  required,
-  as = 'input',
-  options,
-  maxLength,
-  numeric,
-  inputMode,
-}: FieldProps) {
-  const [value, setValue] = useState('')
-  const filled = value.length > 0
-  const base =
-    'peer w-full border-0 border-b border-midnight/25 bg-transparent pb-2.5 pt-6 text-midnight outline-none transition-colors duration-300 focus:border-champagne'
-
-  const handleChange = (v: string) => {
-    // For phone/mobile: allow a leading + plus digits and spaces, and cap length.
-    if (numeric) v = v.replace(/(?!^\+)[^\d\s]/g, '')
-    if (maxLength) v = v.slice(0, maxLength)
-    setValue(v)
-  }
-
-  return (
-    <div className="relative">
-      {as === 'textarea' ? (
-        <textarea
-          id={id}
-          rows={2}
-          required={required}
-          value={value}
-          maxLength={maxLength}
-          onChange={(e) => handleChange(e.target.value)}
-          className={`${base} resize-none`}
-        />
-      ) : as === 'select' ? (
-        <select
-          id={id}
-          required={required}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className={`${base} ${filled ? 'text-midnight' : 'text-transparent'}`}
-        >
-          <option value="" />
-          {options?.map((o) => (
-            <option key={o} value={o} className="text-midnight">
-              {o}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          id={id}
-          type={type}
-          required={required}
-          value={value}
-          maxLength={maxLength}
-          inputMode={inputMode}
-          onChange={(e) => handleChange(e.target.value)}
-          className={base}
-        />
-      )}
-      <label
-        htmlFor={id}
-        className={`pointer-events-none absolute left-0 text-mist transition-all duration-300 ${
-          filled ? 'top-0 text-[11px] font-medium uppercase tracking-[0.16em] text-champagne-dark' : 'top-6 text-base'
-        } peer-focus:top-0 peer-focus:text-[11px] peer-focus:font-medium peer-focus:uppercase peer-focus:tracking-[0.16em] peer-focus:text-champagne-dark`}
-      >
-        {label}
-        {required && ' *'}
-      </label>
-    </div>
-  )
-}
+import { PenTool, CheckCircle2 } from 'lucide-react'
+import { IMAGES } from '../data/site'
 
 export default function EnquiryForm() {
-  const [sent, setSent] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    mobileNumber: '',
+    grade: '',
+    yearOfBirth: '',
+    message: '',
+  })
 
-  const onSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setSent(true)
+    setSubmitted(true)
+    setTimeout(() => {
+      setFormData({
+        fullName: '',
+        email: '',
+        mobileNumber: '',
+        grade: '',
+        yearOfBirth: '',
+        message: '',
+      })
+      setSubmitted(false)
+    }, 4000)
   }
 
   return (
-    <section id="enquiry" className="bg-ivory py-24 sm:py-32">
-      <div className="container-lux grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
-        {/* Left — invitation */}
-        <div className="lg:col-span-5">
-          <Reveal>
-            <p className="eyebrow mb-6">Inquire Today</p>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="font-serif text-[10vw] font-light leading-[0.98] tracking-[-0.02em] text-midnight sm:text-6xl lg:text-[4.4vw]">
-              Begin your <span className="italic text-champagne-dark">journey.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-8 max-w-md leading-relaxed text-charcoal/75">
-              Tell us a little about yourself and our admissions team will be in
-              touch — thoughtfully, and without the pressure. Every great
-              education starts with a conversation.
-            </p>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <dl className="mt-10 space-y-4 text-sm">
-              <div className="flex gap-4 border-t border-midnight/15 pt-4">
-                <dt className="w-28 shrink-0 uppercase tracking-[0.14em] text-mist">Email</dt>
-                <dd>
-                  <a
-                    href="mailto:admissions@yenepoyaworld.edu"
-                    className="link-underline text-midnight"
-                  >
-                    admissions@yenepoyaworld.edu
-                  </a>
-                </dd>
-              </div>
-              <div className="flex gap-4 border-t border-midnight/15 pt-4">
-                <dt className="w-28 shrink-0 uppercase tracking-[0.14em] text-mist">Phone</dt>
-                <dd>
-                  <a href="tel:+918240000000" className="link-underline text-midnight">
-                    +91 824 000 0000
-                  </a>
-                </dd>
-              </div>
-            </dl>
-          </Reveal>
+    <section id="inquire" className="relative w-full">
+      {/* Header with pen doodle icon */}
+      <div className="py-12 bg-white text-center">
+        <div className="w-10 h-10 mx-auto rounded-full bg-[#EBF7F8] flex items-center justify-center text-[#82C9C7]">
+          <PenTool size={20} />
+        </div>
+        <h2 className="font-serif text-2xl sm:text-3xl text-slate-800 mt-2">
+          Inquire Today
+        </h2>
+        <p className="text-xs text-slate-400 mt-1 font-normal">
+          Contact Us for More Information
+        </p>
+      </div>
+
+      {/* Background Photo with Form Overlay */}
+      <div className="relative w-full py-16 sm:py-24 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={IMAGES.formBackground}
+            alt="Child writing in notebook with colored pencils"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle warm overlay to match the reference */}
+          <div className="absolute inset-0 bg-amber-950/20 backdrop-blur-[1px]" />
         </div>
 
-        {/* Right — form */}
-        <div className="lg:col-span-7">
-          <Reveal delay={0.1}>
-            <div className="relative bg-ivory-light p-8 shadow-[0_30px_80px_-40px_rgba(11,27,51,0.3)] sm:p-10">
-              {sent ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: EASE_LUX }}
-                  className="flex min-h-[420px] flex-col items-center justify-center text-center"
-                >
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-champagne text-midnight">
-                    <Check className="h-7 w-7" />
-                  </span>
-                  <h3 className="mt-6 font-serif text-3xl font-light text-midnight">Thank you.</h3>
-                  <p className="mt-3 max-w-sm text-charcoal/70">
-                    Your enquiry has been received. A member of our admissions team
-                    will reach out to you shortly.
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={onSubmit} className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
-                  <Field id="name" label="Full Name" required />
-                  <Field id="email" label="Email" type="email" required />
-                  <Field
-                    id="phone"
-                    label="Mobile Number"
+        <div className="container-page relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-xl mx-auto bg-white/90 backdrop-blur-md rounded-2xl p-8 sm:p-10 shadow-2xl border border-white/60"
+          >
+            {submitted ? (
+              <div className="py-12 text-center">
+                <CheckCircle2 className="w-12 h-12 text-[#82C9C7] mx-auto mb-3" />
+                <h3 className="font-serif text-2xl text-slate-800">
+                  Thank You for Your Inquiry!
+                </h3>
+                <p className="text-xs text-slate-500 mt-2">
+                  Our admissions office will reach out to you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Full Name"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    className="w-full rounded-md border border-slate-300 bg-white/80 px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 shadow-sm focus:border-[#82C9C7] focus:outline-none focus:ring-1 focus:ring-[#82C9C7]"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="email"
+                    required
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full rounded-md border border-slate-300 bg-white/80 px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 shadow-sm focus:border-[#82C9C7] focus:outline-none focus:ring-1 focus:ring-[#82C9C7]"
+                  />
+                </div>
+
+                <div>
+                  <input
                     type="tel"
-                    numeric
-                    inputMode="tel"
-                    maxLength={15}
+                    required
+                    placeholder="Mobile Number"
+                    value={formData.mobileNumber}
+                    onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+                    className="w-full rounded-md border border-slate-300 bg-white/80 px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 shadow-sm focus:border-[#82C9C7] focus:outline-none focus:ring-1 focus:ring-[#82C9C7]"
                   />
-                  <Field
-                    id="program"
-                    label="Program of Interest"
-                    as="select"
-                    options={['Undergraduate', 'Postgraduate', 'Research', 'Foundation', 'Not sure yet']}
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Grade"
+                    value={formData.grade}
+                    onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                    className="w-full rounded-md border border-slate-300 bg-white/80 px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 shadow-sm focus:border-[#82C9C7] focus:outline-none focus:ring-1 focus:ring-[#82C9C7]"
                   />
-                  <div className="sm:col-span-2">
-                    <Field id="message" label="Message" as="textarea" />
-                  </div>
-                  <div className="mt-6 sm:col-span-2">
-                    <button
-                      type="submit"
-                      className="btn-primary group w-full hover:bg-champagne-dark sm:w-auto"
-                    >
-                      Submit Enquiry
-                      <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5" />
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
-          </Reveal>
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Child's Year Of Birth"
+                    value={formData.yearOfBirth}
+                    onChange={(e) => setFormData({ ...formData, yearOfBirth: e.target.value })}
+                    className="w-full rounded-md border border-slate-300 bg-white/80 px-4 py-2.5 text-xs text-slate-800 placeholder-slate-400 shadow-sm focus:border-[#82C9C7] focus:outline-none focus:ring-1 focus:ring-[#82C9C7]"
+                  />
+                </div>
+
+                <div>
+                  <textarea
+                    rows={3}
+                    placeholder="Message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full rounded-md border border-slate-300 bg-white/80 px-4 py-2 text-xs text-slate-800 placeholder-slate-400 shadow-sm focus:border-[#82C9C7] focus:outline-none focus:ring-1 focus:ring-[#82C9C7] resize-none"
+                  />
+                </div>
+
+                <div className="pt-2 text-center">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center rounded-md border border-slate-400 bg-white px-10 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-600 transition-all duration-200"
+                  >
+                    SUBMIT
+                  </button>
+                </div>
+              </form>
+            )}
+          </motion.div>
         </div>
       </div>
     </section>

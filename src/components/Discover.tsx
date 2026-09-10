@@ -1,67 +1,75 @@
-import { ArrowUpRight } from 'lucide-react'
-import { DISCOVER } from '../data/site'
-import Reveal from './ui/Reveal'
+import { motion } from 'framer-motion'
+import { Image, Newspaper, BookOpen, Compass } from 'lucide-react'
+import { DISCOVER_ITEMS } from '../data/site'
 
 export default function Discover() {
+  const getIcon = (idx: number) => {
+    if (idx === 0) return <Image size={18} className="text-white" />
+    if (idx === 1) return <Newspaper size={18} className="text-white" />
+    return <BookOpen size={18} className="text-white" />
+  }
+
   return (
-    <section id="discover" className="bg-ivory py-24 sm:py-32">
-      <div className="container-lux">
-        <div className="mb-14 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <div>
-            <Reveal>
-              <p className="eyebrow mb-6">Discover Further</p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="font-serif text-4xl font-light leading-tight tracking-tight text-midnight sm:text-5xl">
-                Gallery, news <span className="italic text-champagne-dark">&amp; stories.</span>
-              </h2>
-            </Reveal>
+    <section id="discover" className="relative w-full py-16 bg-doodle-grid border-t border-b border-[#C7EEF0]/50">
+      <div className="container-page">
+        {/* Section Header with Compass Icon */}
+        <div className="text-center mb-12">
+          <div className="w-10 h-10 mx-auto rounded-full bg-white shadow-sm flex items-center justify-center text-[#82C9C7] border border-[#82C9C7]/30">
+            <Compass size={22} />
           </div>
-          <Reveal delay={0.1}>
-            <a
-              href="#discover"
-              className="group inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.14em] text-midnight"
-            >
-              <span className="link-underline">View all</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          </Reveal>
+          <h2 className="font-serif text-2xl sm:text-3xl text-slate-800 mt-3">
+            Discover Further
+          </h2>
+          <p className="text-xs text-slate-500 mt-1 font-normal">
+            Explore more of The Yenepoya School Offerings
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-12">
-          {DISCOVER.map((d, i) => (
-            <Reveal key={d.title} delay={i * 0.06} className={d.span}>
-              <a
-                href="#discover"
-                data-cursor="hover"
-                className="group block overflow-hidden rounded-sm bg-ivory-light"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
-                    src={d.image}
-                    alt={d.title}
-                    className="h-full w-full object-cover transition-transform duration-[1.3s] ease-lux group-hover:scale-105"
-                  />
-                  <span className="absolute left-4 top-4 rounded-full bg-ivory-light/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-midnight backdrop-blur">
-                    {d.tag}
-                  </span>
+        {/* 3 Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          {DISCOVER_ITEMS.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-lg transition-all duration-300 flex flex-col"
+            >
+              {/* Card Image Container */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Floating Cyan Icon Badge */}
+                <div className="absolute bottom-3 right-3 w-9 h-9 rounded-lg bg-[#82C9C7] flex items-center justify-center shadow-md">
+                  {getIcon(idx)}
                 </div>
-                <div className="flex items-start justify-between gap-4 p-6">
-                  <div>
-                    <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-mist">
-                      {d.date}
-                    </p>
-                    <h3 className="mt-2 font-serif text-xl font-light leading-snug text-midnight sm:text-2xl">
-                      {d.title}
-                    </h3>
-                  </div>
-                  <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-midnight/15 text-midnight transition-all duration-500 group-hover:border-champagne group-hover:bg-champagne">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </a>
-            </Reveal>
+              </div>
+
+              {/* Card Text Content */}
+              <div className="p-6 text-center flex-1 flex flex-col justify-center">
+                <h3 className="font-serif text-xl text-slate-800 font-medium">
+                  {item.title}
+                </h3>
+                <p className="mt-1 text-xs text-slate-400">
+                  {item.subtitle}
+                </p>
+              </div>
+            </motion.div>
           ))}
+        </div>
+
+        {/* Centered LEARN MORE Button */}
+        <div className="mt-12 text-center">
+          <a
+            href="#about"
+            className="btn-learn-more px-8 py-2.5 shadow-sm"
+          >
+            LEARN MORE
+          </a>
         </div>
       </div>
     </section>

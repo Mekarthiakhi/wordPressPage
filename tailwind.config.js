@@ -4,47 +4,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        midnight: {
-          DEFAULT: '#0B1B33',
-          50: '#EAEEF4',
-          900: '#07142A',
-          950: '#050E1F',
+        yenepoya: {
+          DEFAULT: '#82C9C7',
+          dark: '#5AA3A1',
+          light: '#C7EEF0',
+          ice: '#EBF7F8',
+          mist: '#F4FAFA',
+          soft: '#DDF4F5',
         },
-        navy: '#0E2749',
-        ivory: {
-          DEFAULT: '#F6F2EA',
-          light: '#FBF9F4',
+        coral: {
+          DEFAULT: '#DC2626',
+          dark: '#B91C1C',
+          light: '#F87171',
         },
-        champagne: {
-          DEFAULT: '#C6A96B',
-          light: '#DBC69A',
-          dark: '#A98B4E',
+        slateText: {
+          DEFAULT: '#334155',
+          dark: '#0F172A',
+          muted: '#64748B',
         },
-        charcoal: '#22262C',
-        mist: '#5E7590',
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
-      letterSpacing: {
-        eyebrow: '0.28em',
-      },
-      transitionTimingFunction: {
-        lux: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      },
-      keyframes: {
-        'scroll-hint': {
-          '0%, 100%': { transform: 'translateY(0)', opacity: '0.4' },
-          '50%': { transform: 'translateY(8px)', opacity: '1' },
-        },
-        grain: {
-          '0%,100%': { transform: 'translate(0,0)' },
-          '50%': { transform: 'translate(-2%,1%)' },
-        },
-      },
-      animation: {
-        'scroll-hint': 'scroll-hint 2s ease-in-out infinite',
+      boxShadow: {
+        subtle: '0 4px 20px -2px rgba(130, 201, 199, 0.12)',
+        card: '0 8px 30px rgba(0, 0, 0, 0.05)',
       },
     },
   },
