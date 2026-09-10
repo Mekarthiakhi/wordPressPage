@@ -20,7 +20,7 @@ export default function Logo({ className = '', tone = 'dark', compact = false }:
           className={`text-[9px] font-medium uppercase tracking-[0.34em] ${
             compact ? 'hidden xl:block' : 'block'
           }`}
-          style={{ color: '#C6A96B' }}
+          style={{ color: '#C6A96B', marginTop: '5px'   }}
         >
           Institution of Excellence
         </span>
