@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { IMAGES } from '../data/site'
 
-// Social media SVG icons
 function FacebookIcon() {
   return (
     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -34,55 +33,76 @@ export default function Hero() {
     IMAGES.thumb4,
     IMAGES.thumb5,
     IMAGES.thumb6,
+    IMAGES.thumb7,
+    IMAGES.thumb8,
   ]
 
   return (
-    <section className="relative w-full bg-white pt-6 pb-12">
+    <section className="relative w-full bg-white pt-6 pb-12 overflow-hidden">
       <div className="container-page">
-        {/* 1. Top 3-Photo Collage */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-8">
+        {/* 1. Top 3-Photo Collage with subtle elevation */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-sm shadow-sm aspect-[4/3] bg-slate-100"
+            className="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] bg-slate-100 border border-slate-100"
           >
             <img
               src={IMAGES.heroMaskBoy}
-              alt="Student with mask focused on studies"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              alt="Student focused on study materials"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
+            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white/90 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              Student Focus
+            </span>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="overflow-hidden rounded-sm shadow-sm aspect-[4/3] bg-slate-100"
+            className="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] bg-slate-100 border border-slate-100"
           >
             <img
               src={IMAGES.heroClassroom}
               alt="Bright modern classroom"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
+            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white/90 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              Inspiring Spaces
+            </span>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="overflow-hidden rounded-sm shadow-sm aspect-[4/3] bg-slate-100"
+            className="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] bg-slate-100 border border-slate-100"
           >
             <img
               src={IMAGES.heroWoodenDesks}
-              alt="Wooden study desks and library space"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              alt="Wooden study desks and reading zone"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
+            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white/90 bg-black/40 backdrop-blur-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              Knowledge Hub
+            </span>
           </motion.div>
         </div>
 
         {/* 2. Centered Headline + Subtitle + Socials */}
-        <div className="relative border-t border-b border-slate-200 py-8 px-4 my-8 text-center">
+        <div className="relative border-t border-b border-slate-200/80 py-10 px-4 my-8 text-center bg-gradient-to-b from-slate-50/50 via-white to-slate-50/30 rounded-lg">
+          {/* Subtle floral/laurel accent */}
+          <div className="flex justify-center items-center gap-3 mb-2 text-[#82C9C7]">
+            <span className="h-px w-10 bg-[#82C9C7]/40" />
+            <span className="text-xs uppercase tracking-[0.3em] font-semibold">Excellence in Learning</span>
+            <span className="h-px w-10 bg-[#82C9C7]/40" />
+          </div>
+
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,20 +116,20 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-3 max-w-2xl mx-auto text-xs sm:text-sm text-slate-500 leading-relaxed font-normal"
+            className="mt-3.5 max-w-2xl mx-auto text-xs sm:text-sm text-slate-500 leading-relaxed font-normal"
           >
             A supportive and stimulating environment that fosters academic excellence,
             character development, and a love for learning.
           </motion.p>
 
-          {/* Social Icons positioned on right / bottom on mobile */}
-          <div className="flex items-center justify-center sm:justify-end gap-3.5 mt-4 text-slate-600 sm:absolute sm:bottom-4 sm:right-6">
+          {/* Social Icons with hover glow */}
+          <div className="flex items-center justify-center sm:justify-end gap-3 mt-5 sm:mt-0 text-slate-500 sm:absolute sm:bottom-4 sm:right-6">
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="p-1 hover:text-[#82C9C7] transition-colors"
+              className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:text-white hover:bg-[#82C9C7] hover:border-[#82C9C7] transition-all"
             >
               <FacebookIcon />
             </a>
@@ -118,7 +138,7 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="p-1 hover:text-[#82C9C7] transition-colors"
+              className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:text-white hover:bg-[#82C9C7] hover:border-[#82C9C7] transition-all"
             >
               <InstagramIcon />
             </a>
@@ -127,30 +147,30 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
-              className="p-1 hover:text-[#82C9C7] transition-colors"
+              className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:text-white hover:bg-[#82C9C7] hover:border-[#82C9C7] transition-all"
             >
               <YoutubeIcon />
             </a>
           </div>
         </div>
 
-        {/* 3. Horizontal Photo Thumbnail Strip (6 images) */}
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3 overflow-hidden rounded-sm">
-          {thumbnails.map((src, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="aspect-[4/3] overflow-hidden rounded-sm bg-slate-100 shadow-sm"
-            >
-              <img
-                src={src}
-                alt={`Campus snapshot ${idx + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </motion.div>
-          ))}
+        {/* 3. High-Energy Photo Strip (interactive continuous marquee) */}
+        <div className="relative overflow-hidden rounded-xl bg-slate-50 py-1.5 border border-slate-100 shadow-inner">
+          <div className="marquee-strip gap-3 sm:gap-4">
+            {/* Double the array for seamless infinite looping */}
+            {[...thumbnails, ...thumbnails].map((src, idx) => (
+              <div
+                key={idx}
+                className="w-36 sm:w-48 aspect-[4/3] flex-shrink-0 overflow-hidden rounded-lg bg-slate-200 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md cursor-pointer"
+              >
+                <img
+                  src={src}
+                  alt={`Student life snapshot ${(idx % thumbnails.length) + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

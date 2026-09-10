@@ -6,6 +6,7 @@
   :root {
     --yenepoya-teal: #82c9c7;
     --yenepoya-light: #c7eef0;
+    --yenepoya-dark: #4a9c9a;
   }
 
   html {
@@ -31,11 +32,11 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #f8fafc;
   }
   ::-webkit-scrollbar-thumb {
     background: #82c9c7;
-    border-radius: 4px;
+    border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #5aa3a1;
@@ -44,11 +45,11 @@
 
 @layer components {
   .btn-enroll {
-    @apply inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-800 shadow-md transition-all duration-300 hover:bg-slate-50 hover:shadow-lg active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-9 py-3 text-xs font-bold uppercase tracking-widest text-slate-800 shadow-md transition-all duration-300 hover:bg-slate-50 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 active:translate-y-0;
   }
 
   .btn-coral {
-    @apply inline-flex items-center justify-center rounded-full px-8 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all duration-300 active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-9 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:shadow-red-500/30 hover:-translate-y-0.5 active:scale-95;
     background-color: #dc2626;
   }
   .btn-coral:hover {
@@ -56,11 +57,11 @@
   }
 
   .btn-learn-more {
-    @apply inline-flex items-center justify-center rounded-md border border-slate-700 bg-transparent px-6 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700 transition-all duration-300 hover:bg-slate-800 hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-white/60 px-7 py-2 text-xs font-semibold uppercase tracking-wider text-slate-800 transition-all duration-300 hover:bg-slate-800 hover:text-white hover:shadow-md hover:-translate-y-0.5 active:scale-95;
   }
 
   .btn-white-pill {
-    @apply inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-800 shadow-md transition-all duration-300 hover:bg-slate-100 hover:shadow-lg active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-9 py-3 text-xs font-bold uppercase tracking-widest text-slate-800 shadow-md transition-all duration-300 hover:bg-slate-50 hover:shadow-lg hover:-translate-y-0.5 active:scale-95;
   }
 
   .container-page {
@@ -68,12 +69,30 @@
   }
 }
 
-/* Doodle texture pattern overlay */
-.bg-doodle-grid {
-  background-color: #ebf7f8;
-  background-image: radial-gradient(#82c9c7 0.75px, transparent 0.75px), radial-gradient(#82c9c7 0.75px, #ebf7f8 0.75px);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
+/* Doodle texture pattern with faint stationery sketches */
+.bg-doodle-pattern {
+  background-color: #f2fafb;
+  background-image: radial-gradient(#82c9c7 0.9px, transparent 0.9px), radial-gradient(#82c9c7 0.9px, #f2fafb 0.9px);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+/* Soft floating animation for hand-drawn doodles */
+@keyframes doodle-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+
+.animate-doodle {
+  animation: doodle-float 5s ease-in-out infinite;
+}
+
+.animate-doodle-delayed {
+  animation: doodle-float 6s ease-in-out 1.5s infinite;
 }
 
 @keyframes marquee-scroll {
@@ -85,12 +104,12 @@
   }
 }
 
-.marquee-animation {
+.marquee-strip {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 35s linear infinite;
+  animation: marquee-scroll 45s linear infinite;
 }
 
-.marquee-animation:hover {
+.marquee-strip:hover {
   animation-play-state: paused;
 }

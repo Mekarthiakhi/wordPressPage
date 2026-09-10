@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react'
 import Logo from './ui/Logo'
 import { FOOTER_COLUMNS } from '../data/site'
 
@@ -29,49 +30,55 @@ export default function Footer() {
   return (
     <footer className="relative w-full bg-white">
       {/* 1. Centered School Logo Emblem */}
-      <div className="py-8 flex justify-center border-t border-slate-100">
+      <div className="py-10 flex flex-col items-center justify-center border-t border-slate-100">
         <Logo tone="dark" compact={false} centered={true} />
       </div>
 
       {/* 2. Soft Cyan Banner with CONTACT US pill button */}
-      <div className="w-full bg-gradient-to-r from-[#82C9C7] via-[#94D6D4] to-[#79C4C2] py-12 px-6 text-center text-white">
-        <div className="max-w-xl mx-auto">
-          <h3 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight">
+      <div className="w-full bg-gradient-to-r from-[#7DC8C6] via-[#8FD5D3] to-[#71C1BF] py-14 px-6 text-center text-white relative overflow-hidden shadow-inner">
+        {/* Background ambient lighting */}
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-white/15 blur-3xl pointer-events-none" />
+
+        <div className="max-w-xl mx-auto relative z-10">
+          <h3 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight">
             The Yenepoya World
           </h3>
-          <p className="mt-2 text-xs sm:text-sm text-white/90 font-light">
+          <p className="mt-2 text-xs sm:text-sm text-white/95 font-light leading-relaxed">
             Where academic excellence meets holistic values and global futures.
           </p>
 
-          <div className="mt-6">
+          <div className="mt-8">
             <a
-              href="#contact"
-              className="btn-white-pill"
+              href="#inquire"
+              className="btn-white-pill group shadow-lg"
             >
-              CONTACT US
+              <span>CONTACT US</span>
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
       </div>
 
       {/* 3. Link Columns & Socials */}
-      <div className="container-page py-12">
+      <div className="container-page py-14">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* 3 Link Columns */}
-          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.title}>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-800 mb-3">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800 mb-4 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#82C9C7]" />
                   {col.title}
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-xs text-slate-500 hover:text-[#82C9C7] transition-colors"
+                        className="text-xs text-slate-500 hover:text-[#5AA3A1] transition-colors flex items-center gap-1.5 group"
                       >
-                        {link.label}
+                        <span className="text-slate-300 group-hover:text-[#82C9C7] transition-colors">›</span>
+                        <span>{link.label}</span>
                       </a>
                     </li>
                   ))}
@@ -81,34 +88,41 @@ export default function Footer() {
           </div>
 
           {/* Social Media Icons */}
-          <div className="md:col-span-3 flex md:justify-end items-center gap-3 text-slate-600">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:text-[#82C9C7] hover:border-[#82C9C7] transition-colors"
-            >
-              <FacebookIcon />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:text-[#82C9C7] hover:border-[#82C9C7] transition-colors"
-            >
-              <InstagramIcon />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="YouTube"
-              className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:text-[#82C9C7] hover:border-[#82C9C7] transition-colors"
-            >
-              <YoutubeIcon />
-            </a>
+          <div className="md:col-span-3 flex flex-col md:items-end gap-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#82C9C7]" />
+              Connect With Us
+            </h4>
+
+            <div className="flex items-center gap-3 text-slate-600">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center hover:text-white hover:bg-[#82C9C7] hover:border-[#82C9C7] shadow-xs transition-all duration-300 hover:scale-105"
+              >
+                <FacebookIcon />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center hover:text-white hover:bg-[#82C9C7] hover:border-[#82C9C7] shadow-xs transition-all duration-300 hover:scale-105"
+              >
+                <InstagramIcon />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center hover:text-white hover:bg-[#82C9C7] hover:border-[#82C9C7] shadow-xs transition-all duration-300 hover:scale-105"
+              >
+                <YoutubeIcon />
+              </a>
+            </div>
           </div>
         </div>
 
