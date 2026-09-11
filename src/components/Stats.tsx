@@ -125,7 +125,7 @@ export default function Stats() {
 
             {/* Right: White pill ENROLL button with subtle pulse */}
             <a
-              href="#inquire"
+              href="#admissions"
               className="btn-enroll shadow-lg hover:shadow-xl group"
             >
               <span>ENROLL</span>

@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
 import MissionVision from './components/MissionVision'
+import Curriculum from './components/Curriculum'
 import ContactCTA from './components/ContactCTA'
 import Discover from './components/Discover'
 import Testimonials from './components/Testimonials'
@@ -16,6 +17,7 @@ export default function App() {
         <Hero />
         <Stats />
         <MissionVision />
+        <Curriculum />
         <ContactCTA />
         <Discover />
         <Testimonials />

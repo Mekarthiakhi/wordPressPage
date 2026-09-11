@@ -15,6 +15,10 @@
     text-rendering: optimizeLegibility;
   }
 
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
   body {
     background-color: #ffffff;
     color: #1e293b;

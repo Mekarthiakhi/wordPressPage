@@ -179,7 +179,7 @@ export default function MissionVision() {
 
           {/* 2. Students */}
           <motion.a
-            href="#community"
+            href="#about"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -196,7 +196,7 @@ export default function MissionVision() {
 
           {/* 3. Admissions */}
           <motion.a
-            href="#inquire"
+            href="#admissions"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

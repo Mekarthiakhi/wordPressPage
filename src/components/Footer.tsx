@@ -49,7 +49,7 @@ export default function Footer() {
 
           <div className="mt-8">
             <a
-              href="#inquire"
+              href="#contact"
               className="btn-white-pill group shadow-lg"
             >
               <span>CONTACT US</span>

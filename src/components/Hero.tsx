@@ -38,7 +38,7 @@ export default function Hero() {
   ]
 
   return (
-    <section className="relative w-full bg-white pt-6 pb-12 overflow-hidden">
+    <section id="about" className="relative w-full bg-white pt-6 pb-12 overflow-hidden">
       <div className="container-page">
         {/* 1. Top 3-Photo Collage with subtle elevation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 mb-8">

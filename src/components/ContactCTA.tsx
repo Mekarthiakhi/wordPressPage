@@ -4,7 +4,7 @@ import { IMAGES } from '../data/site'
 
 export default function ContactCTA() {
   return (
-    <section id="contact" className="relative w-full py-24 overflow-hidden">
+    <section id="assistance" className="relative w-full py-24 overflow-hidden">
       {/* Background Image: Classroom Blackboard */}
       <div className="absolute inset-0 z-0">
         <img
@@ -70,7 +70,7 @@ export default function ContactCTA() {
           className="mt-8"
         >
           <a
-            href="#inquire"
+            href="#contact"
             className="btn-coral shadow-2xl hover:shadow-red-600/40 group font-bold tracking-widest"
           >
             <span>CONTACT US</span>

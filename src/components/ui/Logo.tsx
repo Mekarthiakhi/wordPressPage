@@ -34,17 +34,17 @@ export default function Logo({ className = '', tone = 'dark', compact = false, c
         <path d="M16 30C18 29 22 29 24 30" stroke="#82C9C7" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
 
-      <span className="leading-tight">
+      <span className="leading-tight whitespace-nowrap">
         <span
-          className="block font-serif text-[16px] font-semibold tracking-tight"
+          className="block font-serif text-[15px] sm:text-[16px] font-semibold tracking-tight whitespace-nowrap"
           style={{ color: primary }}
         >
           The Yenepoya World
         </span>
         <span
-          className={`text-[8.5px] font-semibold uppercase tracking-[0.28em] text-[#82C9C7] ${
+          className={`text-[8.5px] font-semibold uppercase tracking-[0.24em] text-[#82C9C7] ${
             compact ? 'hidden sm:block' : 'block'
-          } mt-0.5`}
+          } mt-0.5 whitespace-nowrap`}
         >
           School of Excellence
         </span>
